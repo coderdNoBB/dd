@@ -1,7 +1,7 @@
 # dd
 Showcases
 
-**Techque stack:**
+**Technique stack:**
 1. React
 2. Nextjs
 3. Sequelize
