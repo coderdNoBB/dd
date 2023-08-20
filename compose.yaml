@@ -10,9 +10,9 @@ services:
       - PG_DBNAME=postgres
       - PG_HOST=db
       - PG_USER=postgres
-      - PG_PASSWORD=mysecretpassword  
+      - PG_PASSWORD=mysecretpassword
     networks:
-      - client-side
+      - app_network
     ports:
       - "3000:3000"
 
@@ -22,16 +22,32 @@ services:
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
     networks:
-      - server-side
+      - app_network
     ports:
       - 5432:5432
     volumes:
       - db-data:/var/lib/postgresql/data
 
+  liquibase:
+    build:
+      context: liquibase
+    environment:
+      - LIQUIBASE_PROJECT_DIR=${LIQUIBASE_PROJECT_DIR}
+      - LIQUIBASE_DATABASE_DRIVER=${LIQUIBASE_DATABASE_DRIVER}
+      - LIQUIBASE_DATABASE_URL=jdbc:mysql://${LIQUIBASE_DATABASE_HOST}:3306/${MYSQL_DATABASE}
+      - LIQUIBASE_DATABASE_USERNAME=${MYSQL_USER}
+      - LIQUIBASE_DATABASE_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./liquibase/conf/changelog/:/liquibase/changelog/
+    networks:
+      - app_network
+     command: --defaults-file=/liquibase/changelog/liquibase.properties update  
 
 networks:
-  client-side: {}
-  server-side: {}
+  app_network: {}
 
 volumes:
   db-data: {}
