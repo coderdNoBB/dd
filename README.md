@@ -1,5 +1,4 @@
-# dd
-Showcases
+ - Showcase1 JS full stack
 
 **Technique stack:**
 1. React
