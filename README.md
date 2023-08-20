@@ -7,7 +7,7 @@
 4. Liquibase
 5. PostgreSQL
 
-- [ ] Get an postgresql dev docker image prepared
+- [x] Get an postgresql dev docker image prepared in compose.yaml
 - [X] Initialize next js project and I call it js_fullstack
 - [ ] Learn how to integrate Liquibase js into this project
 - [ ] Build a login component
