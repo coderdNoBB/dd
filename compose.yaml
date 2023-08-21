@@ -38,13 +38,12 @@ services:
       - LIQUIBASE_DATABASE_USERNAME=${MYSQL_USER}
       - LIQUIBASE_DATABASE_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     volumes:
       - ./liquibase/conf/changelog/:/liquibase/changelog/
     networks:
       - app_network
-     command: --defaults-file=/liquibase/changelog/liquibase.properties update  
+    command: --defaults-file=/liquibase/changelog/liquibase.properties update  
 
 networks:
   app_network: {}
