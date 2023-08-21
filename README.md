@@ -1,4 +1,4 @@
- - Showcase1 JS full stack
+ - Showcase1 JS full stack<br>
 <strong>Start the Dev environment with single command :</strong>
 ```
  docker compose up
