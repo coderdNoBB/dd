@@ -12,7 +12,7 @@
 - [x] Get an postgresql dev docker image prepared in compose.yaml
 - [X] Initialize next js project and I call it js_fullstack
 - [x] Get an Liquibase docker image prepared in compose.yaml
-- [ ] Get Liquibase and postgresql connected and works
+- [x] Get Liquibase and postgresql connected and works
 - [ ] Build a login component
 - [ ] Build a login endpoint using Sequelize
 - [ ] Integrate login function
