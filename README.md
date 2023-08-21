@@ -6,6 +6,8 @@
 3. Sequelize
 4. Liquibase
 5. PostgreSQL
+6. Airflow
+7. Python ETL & data processing
 
 - [x] Get an postgresql dev docker image prepared in compose.yaml
 - [X] Initialize next js project and I call it js_fullstack
