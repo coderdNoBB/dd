@@ -1,6 +1,8 @@
  - Showcase1 JS full stack
 <strong>Start the Dev environment with single command :</strong>
+```
  docker compose up
+```
 **Technique stack:**
 1. React
 2. Nextjs
