@@ -1,4 +1,3 @@
-
 FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -18,6 +17,7 @@ RUN npm run build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
+COPY . .
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
