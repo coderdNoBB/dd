@@ -1,5 +1,8 @@
- - Showcase1 JS full stack
-
+ - Showcase1 JS full stack<br>
+<strong>Start Dev environment with single command :</strong>
+```
+ docker compose up
+```
 **Technique stack:**
 1. React
 2. Nextjs
@@ -13,6 +16,6 @@
 - [X] Initialize next js project and I call it js_fullstack
 - [x] Get an Liquibase docker image prepared in compose.yaml
 - [x] Get Liquibase and postgresql connected and works
-- [ ] Build a login component
+- [ ] Build a login UI component
 - [ ] Build a login endpoint using Sequelize
 - [ ] Integrate login function
