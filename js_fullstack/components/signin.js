@@ -10,29 +10,23 @@ export default function SignIn({ csrfToken }) {
   const [error, setError] = useState(null)
   const router = useRouter()
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log('form submitted ✅');
-    // TODO do login
-  };
-
-  useEffect(() => {
-    const listener = event => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        event.preventDefault();
-        formik.handleSubmit
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const listener = event => {
+  //     if (event.code === "Enter" || event.code === "NumpadEnter") {
+  //       event.preventDefault();
+  //       formik.handleSubmit
+  //     }
+  //   };
+  //   document.addEventListener("keydown", listener);
+  //   return () => {
+  //     document.removeEventListener("keydown", listener);
+  //   };
+  // }, []);
 
   return (
     <>
       <Formik
-        initialValues={{ username: '', password: '' }}
+        initialValues={{ username: '', password: '',rememberme: '' }}
         validationSchema={Yup.object().shape({
           username: Yup.string()
             .max(10, 'Must be 10 characters or less')
@@ -42,20 +36,20 @@ export default function SignIn({ csrfToken }) {
             .required('Please enter your password'),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          console.log(values)
+          const callbackUrl = `${window.location.origin}`
           const res = await signIn('Credentials', {
             redirect: false,
             username: values.username,
             password: values.password,
-            callbackUrl: `${window.location.origin}`,
+            rememberme: values.rememberme,
+            callbackUrl: callbackUrl,
           })
-          console.log(res)
-          // if (res?.error) {
-          //   setError(res.error)
-          // } else {
-          //   setError(null)
-          // }
-          // if (res.url) router.push(res.url)
+          if (res?.error) {
+            setError(res.error)
+          } else {
+            setError(null)
+          }
+          if (res.url) router.push(callbackUrl)
           setSubmitting(false)
         }}
       >
@@ -70,14 +64,14 @@ export default function SignIn({ csrfToken }) {
             <form onSubmit={handleSubmit}>
               <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div className="text-red-400 text-md text-center rounded p-2">
+              <div className="text-danger">
                 {error}
               </div>
               <div className="form-floating">
                 <input className="form-control" id="floatingInput" onChange={handleChange}
                   onBlur={handleBlur} value={values.username} name="username" placeholder="d" />
                 <label htmlFor="floatingInput">User Name</label>
-                <div className="text-red-600 text-sm">
+                <div className="text-danger">
                   <ErrorMessage name="username" />
                 </div>
               </div>
@@ -85,14 +79,14 @@ export default function SignIn({ csrfToken }) {
                 <input type="password" className="form-control" id="floatingPassword"  onChange={handleChange}
                   onBlur={handleBlur} value={values.password}  name="password" placeholder="Password" />
                 <label htmlFor="floatingPassword">Password</label>
-                <div className="text-red-600 text-sm">
+                <div className="text-danger">
                   <ErrorMessage name="password" />
                 </div>
               </div>
 
               <div className={cx(styles.checkbox, "mb-3")}>
                 <label>
-                  <input type="checkbox" value="remember-me" /> Remember me
+                  <input type="checkbox" name="rememberme" value={values.rememberme}  onChange={handleChange} /> Remember me
                 </label>
               </div>
               <button className="w-100 btn btn-lg btn-success" disabled={isSubmitting} type="submit">Sign in</button>
