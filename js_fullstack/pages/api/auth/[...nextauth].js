@@ -20,7 +20,7 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        console.log(credentials,req)
+        console.log(credentials, req)
 
         // const res = await fetch("/your/endpoint", {
         //   method: "POST",
@@ -34,11 +34,16 @@ export const authOptions = {
         //   return user
         // }
         // Return null if user data could not be retrieved
-        const user = { id: 1, name: 'ddd', }
-        console.log("CredentialsProvider:",user)
-        if(user)
+
+        // console.log(credentials.username)
+        // console.log(typeof credentials.username);
+        const user = { id: 1, name: credentials.username, }
+        if (credentials.username.includes('d')) {
+          user.role = 'Admin'
+        }
+        if (user)
           return user
-        else 
+        else
           return null
 
         // return null
@@ -47,32 +52,11 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token }) {
-      console.log("jwt callback:",token)
-      token.userRole = "admin"
       return token
     },
     async session({ session, user, token }) {
-      console.log("session callback:", session,user,token)
       return session
-    },
-    // async jwt({ token, user, account }) {
-    //   if (account && user) {
-    //     return {
-    //       ...token,
-    //       accessToken: user.token,
-    //       refreshToken: user.refreshToken,
-    //     }
-    //   }
-
-    //   return token
-    // },
-    // async session({ session, token }) {
-    //   session.user.accessToken = token.accessToken
-    //   session.user.refreshToken = token.refreshToken
-    //   session.user.accessTokenExpires = token.accessTokenExpires
-
-    //   return session
-    // },
+    }
   },
   pages: {
     signIn: '/mountain', // mountain is login page
