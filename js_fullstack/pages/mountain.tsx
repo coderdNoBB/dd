@@ -11,7 +11,7 @@ export default function Home() {
       </div>
 
       {showLoginWin && <div className="align-middle d-inline-block w-50">
-        <Signin />
+        <Signin csrfToken={''} />
       </div>}
     </div>
   )

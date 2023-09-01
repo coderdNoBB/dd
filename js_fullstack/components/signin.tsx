@@ -1,32 +1,20 @@
 import cx from 'classnames';
 import styles from '../styles/Signin.module.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { signIn, getCsrfToken } from 'next-auth/react'
-import { Formik, Field, ErrorMessage } from 'formik'
+import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/router'
+import { CtxOrReq } from 'next-auth/client/_utils';
 
-export default function SignIn({ csrfToken }) {
-  const [error, setError] = useState(null)
+export default function SignIn({ csrfToken }: { csrfToken: string }) {
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-
-  // useEffect(() => {
-  //   const listener = event => {
-  //     if (event.code === "Enter" || event.code === "NumpadEnter") {
-  //       event.preventDefault();
-  //       formik.handleSubmit
-  //     }
-  //   };
-  //   document.addEventListener("keydown", listener);
-  //   return () => {
-  //     document.removeEventListener("keydown", listener);
-  //   };
-  // }, []);
 
   return (
     <>
       <Formik
-        initialValues={{ username: '', password: '',rememberme: '' }}
+        initialValues={{ username: '', password: '', rememberme: '' }}
         validationSchema={Yup.object().shape({
           username: Yup.string()
             .max(10, 'Must be 10 characters or less')
@@ -49,7 +37,7 @@ export default function SignIn({ csrfToken }) {
           } else {
             setError(null)
           }
-          if (res.url) router.push(callbackUrl)
+          if (res?.url) router.push(callbackUrl)
           setSubmitting(false)
         }}
       >
@@ -76,8 +64,8 @@ export default function SignIn({ csrfToken }) {
                 </div>
               </div>
               <div className="form-floating">
-                <input type="password" className="form-control" id="floatingPassword"  onChange={handleChange}
-                  onBlur={handleBlur} value={values.password}  name="password" placeholder="Password" />
+                <input type="password" className="form-control" id="floatingPassword" onChange={handleChange}
+                  onBlur={handleBlur} value={values.password} name="password" placeholder="Password" />
                 <label htmlFor="floatingPassword">Password</label>
                 <div className="text-danger">
                   <ErrorMessage name="password" />
@@ -86,7 +74,7 @@ export default function SignIn({ csrfToken }) {
 
               <div className={cx(styles.checkbox, "mb-3")}>
                 <label>
-                  <input type="checkbox" name="rememberme" value={values.rememberme}  onChange={handleChange} /> Remember me
+                  <input type="checkbox" name="rememberme" value={values.rememberme} onChange={handleChange} /> Remember me
                 </label>
               </div>
               <button className="w-100 btn btn-lg btn-success" disabled={isSubmitting} type="submit">Sign in</button>
@@ -98,7 +86,7 @@ export default function SignIn({ csrfToken }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: CtxOrReq | undefined) {
   return {
     props: {
       csrfToken: await getCsrfToken(context),
