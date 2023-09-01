@@ -22,9 +22,9 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         // console.log(credentials, req)
 
-        const res = await fetch("api/user/user", {
+        const res = await fetch("/user/user", {
           method: "get",
-          body: JSON.stringify(credentials),
+          // body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }
         })
         const user = await res.json()

@@ -1,5 +1,5 @@
-import { AppDataSource, dbConnected } from "../../../components/datasource"
-import { User } from "../../../components/entity/User"
+import { AppDataSource, dbConnected } from "../../../src/datasource"
+import { User } from "../../../src/entity/User"
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 

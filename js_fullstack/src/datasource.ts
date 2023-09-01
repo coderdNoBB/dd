@@ -16,7 +16,7 @@ const AppDataSource = new DataSource({
     subscribers: [],
 })
 
-let dbConnected = false
+let dbConnected:boolean = false
 
 AppDataSource.initialize()
     .then(() => {
