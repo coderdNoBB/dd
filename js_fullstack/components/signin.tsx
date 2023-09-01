@@ -10,19 +10,6 @@ export default function SignIn({ csrfToken }) {
   const [error, setError] = useState(null)
   const router = useRouter()
 
-  // useEffect(() => {
-  //   const listener = event => {
-  //     if (event.code === "Enter" || event.code === "NumpadEnter") {
-  //       event.preventDefault();
-  //       formik.handleSubmit
-  //     }
-  //   };
-  //   document.addEventListener("keydown", listener);
-  //   return () => {
-  //     document.removeEventListener("keydown", listener);
-  //   };
-  // }, []);
-
   return (
     <>
       <Formik

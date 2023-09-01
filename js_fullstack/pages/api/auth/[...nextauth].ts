@@ -1,10 +1,10 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 // import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
     CredentialsProvider({
@@ -20,33 +20,19 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        console.log(credentials, req)
+        // console.log(credentials, req)
 
-        // const res = await fetch("/your/endpoint", {
-        //   method: "POST",
-        //   body: JSON.stringify(credentials),
-        //   headers: { "Content-Type": "application/json" }
-        // })
-        // const user = await res.json()
+        const res = await fetch("api/user/user", {
+          method: "get",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" }
+        })
+        const user = await res.json()
 
         // If no error and we have user data, return it
-        // if (res.ok && user) {
-        //   return user
-        // }
-        // Return null if user data could not be retrieved
-
-        // console.log(credentials.username)
-        // console.log(typeof credentials.username);
-        const user = { id: 1, name: credentials.username, }
-        if (credentials.username.includes('d')) {
-          user.role = 'Admin'
-        }
-        if (user)
+        if (res.ok && user) {
           return user
-        else
-          return null
-
-        // return null
+        }
       }
     })
   ],
