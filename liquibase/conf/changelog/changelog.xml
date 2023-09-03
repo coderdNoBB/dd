@@ -36,4 +36,9 @@
             tableName="post" />
         <addPrimaryKey tableName="post" columnNames="id" constraintName="pd_post_id" />
     </changeSet>
+    <changeSet author="d" id="3">
+        <createIndex indexName="idx_name_unique" tableName="user" unique="true">
+            <column name="name"/>
+       </createIndex>
+    </changeSet>
 </databaseChangeLog>
