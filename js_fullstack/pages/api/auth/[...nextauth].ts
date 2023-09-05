@@ -25,6 +25,9 @@ export const authOptions: NextAuthOptions = {
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }
         })
+        if(res.status === 401){
+          throw new Error('Credential invalid');
+        }
         const data = await res.json()
        
         // If no error and we have user data, return it

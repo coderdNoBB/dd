@@ -35,9 +35,12 @@ export default async function handler(
     })
 
     if (user_from_db) {
-      if (user_from_db.pwd === hashPassword(password))
+      if (user_from_db.pwd === hashPassword(password)){
         user_m.name = user_from_db.name
-      user_m.type = 'old_user'
+        user_m.type = 'old_user'
+      } else{
+        res.status(401).json({ user: user_m })
+      }
     } else {
       const new_user = new User()
       new_user.name = username
