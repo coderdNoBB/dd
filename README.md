@@ -3,8 +3,7 @@
 **Technique stack:**
 1. React
 2. Nextjs
-3. Sequelize
+3. TypeORM
 4. Liquibase
 5. PostgreSQL
-6. Airflow
-7. Python ETL & data processing
+6. Django
