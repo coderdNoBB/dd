@@ -13,7 +13,7 @@ Cypress.Commands.add('login', (username, password) => {
 
 context('LoginToHomePage', () => {
   beforeEach(() => {
-    cy.login('d', 'd')
+    cy.login('d', 'd')// temporary user
   })
 
   it('open index page', () => {

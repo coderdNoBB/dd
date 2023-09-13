@@ -17,7 +17,7 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
         initialValues={{ username: '', password: '', rememberme: '' }}
         validationSchema={Yup.object().shape({
           username: Yup.string()
-            .max(10, 'Must be 10 characters or less')
+            .max(100, 'Must be 100 characters or less')
             .required('Please enter your username'),
           password: Yup.string()
             .max(64, 'Must be 64 characters or less')
