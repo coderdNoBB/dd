@@ -1,4 +1,5 @@
- - Showcase1 JS full stack<br>
+ - Showcase 1 JS full stack<br>
+ - Showcase 2 ETL program management with Django
 
 **Technique stack:**
 1. React
