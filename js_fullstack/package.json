@@ -3,7 +3,7 @@
    "scripts": {
       "dev": "next dev",
       "build": "next build",
-      "start": "ts-node src/index.ts",
+      "start": "next start",
       "typeorm": "typeorm-ts-node-commonjs",
       "cypress": "cypress open"
    },

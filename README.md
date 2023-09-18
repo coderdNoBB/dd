@@ -7,4 +7,4 @@
 3. TypeORM
 4. Liquibase
 5. PostgreSQL
-6. Django
+6. Flask Celery Flower

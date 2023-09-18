@@ -4,10 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-requests = "*"
-psycopg2-binary = "*"
-django-environ = "*"
 
 [dev-packages]
 
