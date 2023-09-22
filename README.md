@@ -2,9 +2,23 @@
  - Showcase 2 ETL program management with Flask Celery Flower Redis
 
 **Technique stack:**
-1. React
-2. Nextjs
-3. TypeORM
-4. Liquibase
-5. PostgreSQL
-6. Flask Celery Flower
+
+### js-fullstak
+- React
+- Nextjs
+- TypeORM
+- Cypress
+- 
+### py-task
+- Flask
+- Celery
+- Redis
+- Flower
+
+### liquibase -> database changes version control
+- Liquibase
+
+### Postgres RDB
+-PostgreSQL
+
+

@@ -1,10 +1,11 @@
 from celery import Celery
 from celery import Task
 from flask import Flask
-from flask import render_template
+
 
 def create_app() -> Flask:
-    app = Flask(__name__)
+    app_name = 'My FCR_APP'
+    app = Flask(app_name)
     app.config.from_mapping(
         CELERY=dict(
             broker_url="redis://redis",
@@ -15,8 +16,8 @@ def create_app() -> Flask:
     app.config.from_prefixed_env()
     celery_init_app(app)
 
-    # from . import source_a_etl
-    # app.register_blueprint(source_a_etl.bp)
+    from . import s_etl
+    app.register_blueprint(s_etl.bp)
     return app
 
 

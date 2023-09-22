@@ -27,6 +27,8 @@ services:
     restart: always
     ports:
       - 6379:6379
+    networks:
+      - app_network
     command: redis-server --save 20 1
 
   py-tasks:
@@ -37,17 +39,22 @@ services:
       - celery
     ports:
       - 5000:5000
-    working_dir: /app    
-    command: flask --app main run
-  
+    working_dir: /app
+    networks:
+      - app_network
+    command: python main.py
+
   celery:
     build:
       context: py-task
       dockerfile: Dockerfile
+    restart: unless-stopped
     depends_on:
       - redis
-    working_dir: /app  
-    command: celery -A main worker --loglevel INFO
+    working_dir: /app
+    networks:
+      - app_network
+    command: celery -A main worker --loglevel INFO && celery -A main beat --loglevel INFO
 
   flower:
     build:
@@ -57,7 +64,9 @@ services:
       - celery
     ports:
       - 5555:5555
-    working_dir: /app    
+    working_dir: /app
+    networks:
+      - app_network
     command: celery -A main flower
 
   liquibase:
@@ -69,7 +78,7 @@ services:
       - ./liquibase/conf/changelog/:/liquibase/changelog/
     networks:
       - app_network
-    command: --defaults-file=/liquibase/changelog/liquibase.properties update  
+    command: --defaults-file=/liquibase/changelog/liquibase.properties update
 
 networks:
   app_network: {}
