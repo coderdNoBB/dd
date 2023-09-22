@@ -1,0 +1,23 @@
+[
+    {
+      "date": "2023-01-01",
+      "dimension1": "d1",
+      "dimension2": "d2",
+      "measure1": 107121.12,
+      "measure2": 1231321.3
+    },
+    {
+      "date": "2023-01-02",
+      "dimension1": "d1",
+      "dimension2": "d2",
+      "measure1": 10321.12,
+      "measure2": 1231321.3
+    },
+    {
+      "date": "2023-01-03",
+      "dimension1": "d1",
+      "dimension2": "d2",
+      "measure1": 712321.12,
+      "measure2": 1321.3
+    }
+  ]
