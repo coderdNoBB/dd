@@ -1,3 +1,4 @@
+
  - Showcase 1 JS full stack<br>
  - Showcase 2 ETL program management with Flask Celery Flower Redis
 
@@ -8,7 +9,7 @@
 - Nextjs
 - TypeORM
 - Cypress
-- 
+
 ### py-task
 - Flask
 - Celery
@@ -19,6 +20,4 @@
 - Liquibase
 
 ### Postgres RDB
--PostgreSQL
-
-
+- PostgreSQL
