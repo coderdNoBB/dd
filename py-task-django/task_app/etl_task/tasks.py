@@ -1,21 +1,7 @@
-from celery.result import AsyncResult
-from flask import Blueprint
 from celery import shared_task
 import json
 import os
 import time
-
-bp = Blueprint("tasks", __name__, url_prefix="/tasks")
-
-
-@bp.get("/s/etl/")
-def s_etl() -> str:
-    r = start_etl_s.delay()
-    return r.get(on_message=on_raw_message, propagate=False)
-
-
-def on_raw_message(body):
-    return body
 
 
 @shared_task(ignore_result=False, name='S ETL')
