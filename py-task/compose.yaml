@@ -1,0 +1,41 @@
+version: '0.1'
+name: py-task-flask
+services:
+  py-tasks:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      depends_on:
+        - celery
+      ports:
+        - 5000:5000
+      working_dir: /app
+      command: python main.py
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1
+
+  celery:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      depends_on:
+        - redis
+      working_dir: /app
+      command: celery -A main worker --loglevel INFO && celery -A main beat --loglevel INFO
+
+  flower:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      depends_on:
+        - celery
+      ports:
+        - 5555:5555
+      working_dir: /app
+      command: celery -A main flower

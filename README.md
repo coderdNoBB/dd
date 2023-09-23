@@ -15,10 +15,16 @@
 - Redis
 - Flower
 
+### py-task-django
+- Django
+- Celery
+- Redis
+- django-celery-results
+
 ### liquibase -> database changes version control
 - Liquibase
 
 ### Postgres RDB
--PostgreSQL
+-PostgreSQL for development
 
 
