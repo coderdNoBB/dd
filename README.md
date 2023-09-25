@@ -20,6 +20,7 @@
 - Django
 - Celery
 - Redis
+- django-celery-beat
 - django-celery-results
 
 ### liquibase -> database changes version control
