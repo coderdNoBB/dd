@@ -17,7 +17,6 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
-app.tasks.register(tasks.start_etl_s)
 
 
 @app.task(bind=True, ignore_result=True)

@@ -27,6 +27,7 @@ services:
       depends_on:
         - redis
       working_dir: /app
+      network_mode: host #only use in Dev env
       command: celery -A task_app worker -l INFO
   
   beat:

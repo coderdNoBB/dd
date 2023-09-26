@@ -2,10 +2,12 @@ from celery import shared_task
 import json
 import os
 import time
+from celery import app as celery_app
 
 
-@shared_task(ignore_result=False, name='S ETL')
-def start_etl_s():
+@shared_task(ignore_result=False, name='S ETL', bind=True)
+def start_etl_s(self):
+    print(self)
     s = extract()
     s = tranform(s)
     load(s)
