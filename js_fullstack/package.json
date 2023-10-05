@@ -5,7 +5,9 @@
       "build": "next build",
       "start": "next start",
       "typeorm": "typeorm-ts-node-commonjs",
-      "cypress": "cypress open"
+      "cypress": "cypress open",
+      "cy:run": "cypress run",
+      "test": "start-server-and-test http://localhost:3000 cy:run"
    },
    "dependencies": {
       "@emotion/react": "^11.11.1",
@@ -31,6 +33,7 @@
       "@types/crypto-js": "^4.1.1",
       "@types/node": "^20.5.7",
       "cypress": "^13.1.0",
-      "eslint-config-next": "latest"
+      "eslint-config-next": "latest",
+      "start-server-and-test": "^2.0.1"
    }
 }
